@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //import logo from './logo.svg';
 //import './App.css';
 import About from './components/About'
@@ -28,7 +28,7 @@ function App() {
       >
       </Nav>
       <main>
-        <Gallery></Gallery>
+        <Gallery currentCategory={currentCategory}></Gallery>
         <About></About>
       </main>
     </div>

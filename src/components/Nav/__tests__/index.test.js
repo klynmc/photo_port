@@ -1,36 +1,24 @@
-import React from 'react';
-import { render, cleanup } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import Nav from '..';
+import React from 'react'
+import { render, cleanup } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
+import Gallery from '..'
+const portrait = { name: "portraits", description: "Portraits of people in my life" };
 
-afterEach(cleanup);
+afterEach(cleanup)
 
-describe('Nav component', () => {
-    //baseline test
-    it('renders', () => {
-        render(<Nav />)
-    })
+describe('Gallery component', () => {
 
-    //snapshot test
-    it('matches snapshot', () => {
-       const {asFragment} = render(<Nav />)
-       expect(asFragment()).toMatchSnapshot()
-    })
+  it('renders', () => {
+    render(<Gallery currentCategory={portrait} />);
+  });
+
+  it('matches snapshot', () => {
+    const { asFragment } = render(<Gallery currentCategory={portrait} />)
+    expect(asFragment()).toMatchSnapshot()
+  })
 });
 
-describe('emoji is visible', () => {
-    it('inserts emoji into the h2', () => {
-        const { getByLabelText } = render(<Nav />);
-
-        expect(getByLabelText('camera')).toHaveTextContent('📸');
-    });
-})
-
-describe('links are visible', () => {
-    it('inserts text into the links', () => {
-        const { getByTestId } = render(<Nav />)
-
-        expect(getByTestId('link')).toHaveTextContent('Oh Snap!');
-        expect(getByTestId('about')).toHaveTextContent('About me');
-    });
+it('renders', () => {
+  const { getByTestId } = render(<Gallery currentCategory={portrait} />)
+  expect(getByTestId('h1tag')).toHaveTextContent('Portraits')
 })
